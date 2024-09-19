@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carbon Footprint Manager</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="images/leaf.png" type="image/png">
+</head>
+
+<body>
+    <!-- Background Video -->
+    <video class="background-video" autoplay muted loop
+        aria-label="Background video of moving clouds. No important content is missing if you cannot see this video.">
+        <source src="clouds.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Header with Title and Logo -->
+    <header role="banner">
+        <img class="logo" src="images/leaf.png" alt="Logo">
+        <h1>Carbon Footprint Manager</h1>
+    </header>
+
+    <!-- About Section at the Top -->
+    <section class="about" aria-labelledby="aboutHeading">
+        <h2 id="aboutHeading">About This Project</h2>
+        <p>
+            The <strong>Carbon Footprint Manager</strong> is a tool designed to help individuals calculate and
+            understand their personal carbon emissions based on daily activities such as transportation, electricity
+            usage, diet, and waste management. By providing relevant data, users can estimate their annual carbon
+            footprint and receive personalized recommendations on how to reduce their environmental impact.
+        </p>
+
+        <h3>How It Works</h3>
+        <ul>
+            <li>Choose your country from the dropdown menu to apply country-specific emission factors.</li>
+            <li>Adjust the sliders to match your daily or weekly activities.</li>
+            <li>Click the "Calculate CO2 Emissions" button to see your results and recommendations.</li>
+            <li>You can also check and download the history of your calculations.</li>
+        </ul>
+        <h3>Why It Matters</h3>
+        <p>
+            Reducing your carbon footprint is crucial for mitigating climate change. By understanding the sources of
+            your emissions, you can make informed decisions to lower your impact on the environment. Small changes in
+            daily habits can lead to significant reductions in carbon emissions, contributing to global sustainability
+            efforts.
+        </p>
+    </section>
+
+    <!-- Country Selection Section -->
+    <section class="section" aria-labelledby="countrySelection">
+        <h2 id="countrySelection">🌍 Your Country</h2>
+        <div class="input-group">
+            <label for="country">Select your country:</label>
+            <select id="country" name="country">
+                <option value="India">India</option>
+                <option value="USA">USA</option>
+                <option value="UK">UK</option>
+                <option value="Germany">Germany</option>
+                <option value="Australia">Australia</option>
+            </select>
+        </div>
+    </section>
+
+    <!-- Main Container for User Inputs -->
+    <main class="container" role="main">
+        <!-- Daily Commute Distance Input -->
+        <div class="box" aria-labelledby="dailyCommuteHeading">
+            <h4 id="dailyCommuteHeading">🚘 Daily commute distance (in km)</h4>
+            <div class="input-group">
+                <label for="distance">Distance:</label>
+                <input type="range" id="distance" name="distance" min="0" max="100" step="0.1" value="0">
+                <div class="range-value" id="distanceValue">0 km</div>
+            </div>
+        </div>
+
+        <!-- Monthly Electricity Consumption Input -->
+        <div class="box" aria-labelledby="electricityHeading">
+            <h4 id="electricityHeading">⚡ Monthly electricity consumption (in kWh)</h4>
+            <div class="input-group">
+                <label for="electricity">Electricity:</label>
+                <input type="range" id="electricity" name="electricity" min="0" max="1000" step="1" value="0">
+                <div class="range-value" id="electricityValue">0 kWh</div>
+            </div>
+        </div>
+
+        <!-- Weekly Waste Generation Input -->
+        <div class="box" aria-labelledby="wasteHeading">
+            <h4 id="wasteHeading">🗑 Waste generated per week (in kg)</h4>
+            <div class="input-group">
+                <label for="waste">Waste:</label>
+                <input type="range" id="waste" name="waste" min="0" max="100" step="0.1" value="0">
+                <div class="range-value" id="wasteValue">0 kg</div>
+            </div>
+        </div>
+
+        <!-- Number of Meals Per Day Input -->
+        <div class="box" aria-labelledby="mealsHeading">
+            <h4 id="mealsHeading">🍴 Number of meals per day</h4>
+            <div class="input-group">
+                <label for="meals">Meals:</label>
+                <select id="meals" name="meals">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                </select>
+            </div>
+        </div>
+    </main>
+
+    <!-- Calculate CO2 Emissions Button -->
+    <button type="button" class="btn" onclick="calculateEmissions()" aria-label="Calculate CO2 emissions">Calculate CO2
+        Emissions</button>
+
+    <!-- Results Section -->
+    <div id="results" class="results" aria-labelledby="resultsHeading" role="dialog" aria-hidden="true">
+        <button type="button" class="close-btn" onclick="closeResults()" aria-label="Close results">×</button>
+        <h2 id="resultsHeading">Results</h2>
+        <div id="resultsContent"></div>
+    </div>
+
+    <!-- Recommendations Section -->
+    <div id="recommendations" class="recommendations" aria-labelledby="recommendationsHeading" role="dialog"
+        aria-hidden="true">
+        <h2 id="recommendationsHeading">Recommendations</h2>
+        <div id="recommendationsContent"></div>
+    </div>
+
+    <!-- History Section -->
+    <button class="btn" onclick="showAllTexts()">History</button>
+    <div class="histsection">
+        <div id="outputContainer"></div>
+        <button id="dBtn" onclick="downloadTexts()" style="display: none;">Download History</button>
+    </div>
+
+    <!-- Help/About Section -->
+    <section id="about" class="about-section" aria-labelledby="aboutSectionHeading">
+        <h3 id="aboutSectionHeading">Contact & Support</h3>
+        <p>
+            If you have any questions, suggestions, or need assistance, please contact us at <a
+                href="mailto:support@carbonfootprintmanager.com">support@carbonfootprintmanager.com</a>.
+        </p>
+    </section>
+
+    <footer role="contentinfo">
+        <p>_______________________________________</p>
+        <p>&copy; 2024 Carbon Footprint Manager. All rights reserved.</p>
+    </footer>
+
+    <!-- Audio Elements -->
+    <audio id="clickSound" src="audio/mixkit-on-or-off-light-switch-tap-2585.wav"
+        aria-label="Click sound effect"></audio>
+    <audio id="closeSound" src="audio/mixkit-lighter-wheel-spin-2641.wav" aria-label="Close Sound Effect"></audio>
+
+    <!-- JavaScript -->
+    <script src="js/script.js" defer></script>
+</body>
+
+</html>
