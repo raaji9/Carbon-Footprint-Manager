@@ -15,4 +15,4 @@
 
 
 This Project is Inspired from:
-https://www.youtube.com/watch?v=w3seLDxbt0E
+https://github.com/AIAnytime/carboncentrik-calculator
