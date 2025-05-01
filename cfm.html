@@ -50,23 +50,25 @@
         </p>
     </section>
 
-    <!-- Country Selection Section -->
-    <section class="section" aria-labelledby="countrySelection">
-        <h2 id="countrySelection">🌍 Your Country</h2>
-        <div class="input-group">
-            <label for="country">Select your country:</label>
-            <select id="country" name="country">
-                <option value="India">India</option>
-                <option value="USA">USA</option>
-                <option value="UK">UK</option>
-                <option value="Germany">Germany</option>
-                <option value="Australia">Australia</option>
-            </select>
-        </div>
-    </section>
+    <!-- Page 2: Calculation Section -->
+    <div class="page" id="calculation-page">
+        <!-- State and City Selection Section -->
+        <section class="section" aria-labelledby="locationSelection">
+            <h2 id="locationSelection">📍 Your Location</h2>
+            <!-- State Selection Section -->
+            <div class="input-group" id="state-select-group">
+                <label for="state">Select your state:</label>
+                <select id="state" name="state"></select>
+            </div>
+            <!-- City Selection Section -->
+            <div class="input-group" id="city-select-group">
+                <label for="city">Select your city:</label>
+                <select id="city" name="city"></select>
+            </div>
+        </section>
 
-    <!-- Main Container for User Inputs -->
-    <main class="container" role="main">
+        <!-- Main Container for User Inputs -->
+        <main class="container" role="main">
         <!-- Daily Commute Distance Input -->
         <div class="box" aria-labelledby="dailyCommuteHeading">
             <h4 id="dailyCommuteHeading">🚘 Daily commute distance (in km)</h4>
@@ -115,6 +117,9 @@
         </div>
     </main>
 
+    <!-- Message Area -->
+    <div id="message-area" class="info" style="display: none; margin-top: 20px;"></div>
+
     <!-- Calculate CO2 Emissions Button -->
     <button type="button" class="btn" onclick="calculateEmissions()" aria-label="Calculate CO2 emissions">Calculate CO2
         Emissions</button>
@@ -154,13 +159,8 @@
         <p>&copy; 2024 Carbon Footprint Manager. All rights reserved.</p>
     </footer>
 
-    <!-- Audio Elements -->
-    <audio id="clickSound" src="audio/mixkit-on-or-off-light-switch-tap-2585.wav"
-        aria-label="Click sound effect"></audio>
-    <audio id="closeSound" src="audio/mixkit-lighter-wheel-spin-2641.wav" aria-label="Close Sound Effect"></audio>
-
     <!-- JavaScript -->
-    <script src="js/script.js" defer></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>

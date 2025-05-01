@@ -1,0 +1,172 @@
+{
+  "Andhra Pradesh": {
+    "Visakhapatnam": {
+      "Transportation": 0.12,
+      "Electricity": 0.85,
+      "Diet": 1.15,
+      "Waste": 0.08
+    },
+    "Vijayawada": {
+      "Transportation": 0.11,
+      "Electricity": 0.83,
+      "Diet": 1.12,
+      "Waste": 0.07
+    }
+  },
+  "Maharashtra": {
+    "Mumbai": {
+      "Transportation": 0.15,
+      "Electricity": 0.90,
+      "Diet": 1.30,
+      "Waste": 0.10
+    },
+    "Pune": {
+      "Transportation": 0.13,
+      "Electricity": 0.88,
+      "Diet": 1.25,
+      "Waste": 0.09
+    },
+    "Nagpur": {
+      "Transportation": 0.1,
+      "Electricity": 0.1,
+      "Diet": 0.1,
+      "Waste": 0.1
+    }
+  },
+  "Tamil Nadu": {
+    "Chennai": {
+      "Transportation": 0.14,
+      "Electricity": 0.87,
+      "Diet": 1.20,
+      "Waste": 0.09
+    },
+    "Coimbatore": {
+      "Transportation": 0.12,
+      "Electricity": 0.85,
+      "Diet": 1.18,
+      "Waste": 0.08
+    },
+    "Madurai": {
+      "Transportation": 0.1,
+      "Electricity": 0.1,
+      "Diet": 0.1,
+      "Waste": 0.1
+    }
+  },
+  "Karnataka": {
+    "Bengaluru": {
+      "Transportation": 0.16,
+      "Electricity": 0.92,
+      "Diet": 1.35,
+      "Waste": 0.11
+    },
+    "Mysuru": {
+      "Transportation": 0.13,
+      "Electricity": 0.89,
+      "Diet": 1.28,
+      "Waste": 0.09
+    }
+  },
+  "Delhi": {
+    "New Delhi": {
+      "Transportation": 0.1,
+      "Electricity": 0.1,
+      "Diet": 0.1,
+      "Waste": 0.1
+    }
+  },
+  "Uttar Pradesh": {
+    " Lucknow": {
+      "Transportation": 0.1,
+      "Electricity": 0.1,
+      "Diet": 0.1,
+      "Waste": 0.1
+    },
+    "Kanpur": {
+      "Transportation": 0.1,
+      "Electricity": 0.1,
+      "Diet": 0.1,
+      "Waste": 0.1
+    },
+    "Varanasi": {
+      "Transportation": 0.1,
+      "Electricity": 0.1,
+      "Diet": 0.1,
+      "Waste": 0.1
+    }
+  },
+  "West Bengal": {
+    "Kolkata": {
+      "Transportation": 0.1,
+      "Electricity": 0.1,
+      "Diet": 0.1,
+      "Waste": 0.1
+    },
+    "Durgapur": {
+      "Transportation": 0.1,
+      "Electricity": 0.1,
+      "Diet": 0.1,
+      "Waste": 0.1
+    }
+  },
+  "Rajasthan": {
+    "Jaipur": {
+      "Transportation": 0.1,
+      "Electricity": 0.1,
+      "Diet": 0.1,
+      "Waste": 0.1
+    },
+    "Udaipur": {
+      "Transportation": 0.1,
+      "Electricity": 0.1,
+      "Diet": 0.1,
+      "Waste": 0.1
+    },
+    "Jodhpur": {
+      "Transportation": 0.1,
+      "Electricity": 0.1,
+      "Diet": 0.1,
+      "Waste": 0.1
+    }
+  },
+  "Gujarat": {
+    "Ahmedabad": {
+      "Transportation": 0.1,
+      "Electricity": 0.1,
+      "Diet": 0.1,
+      "Waste": 0.1
+    },
+    "Surat": {
+      "Transportation": 0.1,
+      "Electricity": 0.1,
+      "Diet": 0.1,
+      "Waste": 0.1
+    },
+    "Vadodara": {
+      "Transportation": 0.1,
+      "Electricity": 0.1,
+      "Diet": 0.1,
+      "Waste": 0.1
+    }
+  },
+  "Odisha": {
+    "Bhubaneswar": {
+      "Transportation": 0.1,
+      "Electricity": 0.1,
+      "Diet": 0.1,
+      "Waste": 0.1
+    },
+    "Cuttack": {
+      "Transportation": 0.1,
+      "Electricity": 0.1,
+      "Diet": 0.1,
+      "Waste": 0.1
+    },
+    "Rourkela": {
+      "Transportation": 0.1,
+      "Electricity": 0.1,
+      "Diet": 0.1,
+      "Waste": 0.1
+    }
+  }
+}

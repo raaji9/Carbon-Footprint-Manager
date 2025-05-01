@@ -20,6 +20,79 @@ function getCurrentDateInDDMMYY() {
 }
 const formattedDate = getCurrentDateInDDMMYY();
 
+let emissionData = {}; // Variable to store loaded emission data
+
+/**
+ * Fetches emission data from data.json.
+ */
+async function fetchEmissionData() {
+    try {
+        const response = await fetch('../data.json');
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        emissionData = await response.json();
+        populateStates(); // Populate states after data is loaded
+    } catch (error) {
+        console.error("Error fetching emission data:", error);
+        const messageArea = document.getElementById('message-area');
+        messageArea.textContent = 'Error loading emission data. Please try again later.';
+        messageArea.style.display = 'block';
+    }
+    // Clear message area if data is loaded successfully
+    const messageArea = document.getElementById('message-area');
+    messageArea.style.display = 'none';
+}
+
+/**
+ * Populates the state dropdown based on loaded emission data.
+ */
+function populateStates() {
+    const stateSelect = document.getElementById('state');
+    stateSelect.innerHTML = '<option value="">Select State</option>'; // Add a default option
+    if (emissionData && Object.keys(emissionData).length > 0) {
+        for (const state in emissionData) {
+        const option = document.createElement('option');
+        option.value = state;
+        option.textContent = state;
+        stateSelect.appendChild(option);
+    }
+}
+}
+
+/**
+ * Populates the city dropdown based on the selected state.
+ */
+function populateCities() {
+    const stateSelect = document.getElementById('state');
+    const citySelect = document.getElementById('city');
+    citySelect.innerHTML = '<option value="">Select City</option>'; // Add a default option
+    const selectedState = stateSelect.value;
+
+    if (selectedState && emissionData[selectedState]) {
+        for (const city in emissionData[selectedState]) {
+            const option = document.createElement('option');
+            option.value = city;
+            option.textContent = city;
+            citySelect.appendChild(option);
+        }
+    }
+}
+
+// Add event listeners
+document.getElementById('state').addEventListener('change', populateCities);
+
+// Fetch data when the page loads
+console.log("Fetching emission data..."); // Added console log
+fetchEmissionData();
+
+// Hide results and recommendations on page load
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById('results').style.display = 'none';
+    document.getElementById('recommendations').style.display = 'none';
+});
+
+
 /**
  * Calculate and display the user's carbon emissions based on their inputs.
  */
@@ -35,17 +108,21 @@ function calculateEmissions() {
     const waste = document.getElementById('waste').value * 52;
     const meals = document.getElementById('meals').value * 365;
 
-    // Define emission factors for different countries
-    const emissionFactors = {
-        "india": { "Transportation": 0.13, "Electricity": 0.79, "Diet": 1.20, "Waste": 0.09 },
-        "usa": { "Transportation": 0.25, "Electricity": 0.42, "Diet": 1.90, "Waste": 0.14 },
-        "uk": { "Transportation": 0.19, "Electricity": 0.24, "Diet": 1.45, "Waste": 0.11 },
-        "germany": { "Transportation": 0.20, "Electricity": 0.30, "Diet": 1.65, "Waste": 0.12 },
-        "australia": { "Transportation": 0.28, "Electricity": 0.73, "Diet": 2.10, "Waste": 0.17 }
-    };
+    const selectedState = document.getElementById('state').value;
+    const selectedCity = document.getElementById('city').value;
+    let emissions;
 
-    const country = document.getElementById('country').value.toLowerCase();
-    const emissions = emissionFactors[country];
+    if (selectedState && selectedCity && emissionData[selectedState] && emissionData[selectedState][selectedCity]) {
+        emissions = emissionData[selectedState][selectedCity];
+    } else {
+        // Handle case where state or city is not selected
+        document.getElementById('resultsContent').innerHTML = `<div class="info">Please select a state and city.</div>`;
+        document.getElementById('recommendationsContent').innerHTML = '';
+        resultsElement.style.display = 'block';
+        recommendationsElement.style.display = 'none';
+        return; // Stop calculation if state/city not selected
+    }
+
 
     // Calculate emissions for each category
     const transportationEmissions = emissions["Transportation"] * distance / 1000;
@@ -119,7 +196,6 @@ function calculateEmissions() {
 function closeResults() {
     document.getElementById('results').style.display = 'none';
     document.getElementById('recommendations').style.display = 'none';
-    playSound('closeSound');  // Play Close sound
 }
 
 /**
